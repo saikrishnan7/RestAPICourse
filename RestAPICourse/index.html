@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Test WebAPI results</title>
+    <script src="Scripts/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <input type="text" id="searchId" />
+    <button onclick="searchContact()">Search</button>
+    <button onclick="addContact()">Add</button>
+    <button onclick="deleteContact()">Delete</button>
+    <button onclick="editContact()">Edit</button>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.get("api/Contact", function (result) {
+                console.info(result)
+            });
+        });
+        function searchContact() {
+            $.ajax({
+                type: "GET",
+                datatype: "JSON",
+                url: "api/Contact/" + $("#searchId").val(),
+                success: function (result) {
+                    console.info(result);
+                }
+                
+            });
+        }
+        function addContact() {
+            var newContact = {
+                "Id": 3,
+                "FirstName": "Adira",
+                "LastName": "Krishnan"
+            }   
+            $.ajax({
+                type: "POST",
+                data: newContact,
+                datatype: "JSON",
+                url: "api/Contact",
+                success: function (result) {
+                    console.info(result);
+                }
+
+            });
+        }
+        function deleteContact() {
+            $.ajax({
+                type: "DELETE",
+                datatype: "JSON",
+                url: "api/Contact/" + $("#searchId").val(),
+                success: function (result) {
+                    console.info(result);
+                }
+            });
+        }
+        function editContact() {
+            var c = {
+                "Id": -1,
+                "FirstName": "Kuttans",
+                "LastName": "Staai"
+            }
+            $.ajax({
+                type: "PUT",
+                datatype: "JSON",
+                data: c,
+                url: "api/Contact/" + $("#searchId").val(),
+                success: function (result) {
+                    console.info(result);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
