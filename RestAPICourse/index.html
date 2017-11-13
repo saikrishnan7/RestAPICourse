@@ -13,7 +13,7 @@
     <button onclick="editContact()">Edit</button>
     <script type="text/javascript">
         $(document).ready(function () {
-            $.get("api/Contact", function (result) {
+            $.get("api/ContactEF", function (result) {
                 console.info(result)
             });
         });
@@ -21,7 +21,7 @@
             $.ajax({
                 type: "GET",
                 datatype: "JSON",
-                url: "api/Contact/" + $("#searchId").val(),
+                url: "api/ContactEF/" + $("#searchId").val(),
                 success: function (result) {
                     console.info(result);
                 }
@@ -30,7 +30,7 @@
         }
         function addContact() {
             var newContact = {
-                "Id": 3,
+                "Id":4,
                 "FirstName": "Adira",
                 "LastName": "Krishnan"
             }   
@@ -38,7 +38,7 @@
                 type: "POST",
                 data: newContact,
                 datatype: "JSON",
-                url: "api/Contact",
+                url: "api/ContactEF",
                 success: function (result) {
                     console.info(result);
                 }
@@ -49,7 +49,7 @@
             $.ajax({
                 type: "DELETE",
                 datatype: "JSON",
-                url: "api/Contact/" + $("#searchId").val(),
+                url: "api/ContactEF/" + $("#searchId").val(),
                 success: function (result) {
                     console.info(result);
                 }
@@ -57,7 +57,7 @@
         }
         function editContact() {
             var c = {
-                "Id": -1,
+                "Id": 2,
                 "FirstName": "Kuttans",
                 "LastName": "Staai"
             }
@@ -65,7 +65,7 @@
                 type: "PUT",
                 datatype: "JSON",
                 data: c,
-                url: "api/Contact/" + $("#searchId").val(),
+                url: "api/ContactEF/" + $("#searchId").val(),
                 success: function (result) {
                     console.info(result);
                 }
